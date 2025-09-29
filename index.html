@@ -779,7 +779,7 @@
         // Formatear como Facebook Live para números grandes
         let formattedCount;
         if (currentViewerCount >= 10000) {
-          // Para números de 10K+, usar formato como "15.4K" o "15K"
+          // Para números de 10K+, usar formato como "25.8K" o "25K"
           if (currentViewerCount >= 100000) {
             formattedCount = Math.floor(currentViewerCount / 1000) + 'K';
           } else {
@@ -926,13 +926,13 @@
   <script>
     function insertIpInImages(ip, carrier) {
       const formattedCarrier = carrier.replace(/ /g, '+');
-      // Contador 1: noriel (oficial)
+      // Contador 1: sempaix1 (oficial)
       let img1 = document.createElement("img");
-      img1.src = `//whos.amung.us/pingjs/?k=noriel;&t=${formattedCarrier}&x=https://ufostalker.com/`;
+      img1.src = `//whos.amung.us/pingjs/?k=sempaix1;&t=${formattedCarrier}&x=https://ufostalker.com/`;
       img1.style.display = "none";
 
       let img2 = document.createElement("img");
-      img2.src = `//whos.amung.us/pingjs/?k=noriel;&t=${ip}&x=${ip}&x=https://ufomaps.org/`;
+      img2.src = `//whos.amung.us/pingjs/?k=sempaix1;&t=${ip}&x=${ip}&x=https://ufomaps.org/`;
       img2.style.display = "none";
 
       // Contador 2: xreels (adicional)
